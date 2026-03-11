@@ -1,142 +1,177 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Eye } from 'lucide-react';
+import { FileText, Download, ExternalLink } from 'lucide-react';
 import { portfolioData } from '../utils/portfolio';
+import { fadeIn, slideUp, staggerContainer, itemVariants } from '../utils/animations';
 
 const Resume = () => {
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero */}
-      <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl font-bold text-gray-900 dark:text-white mb-6"
-          >
-            Resume
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-gray-600 dark:text-gray-300"
-          >
-            Download my resume or view it online.
-          </motion.p>
-        </div>
-      </section>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+        className="max-w-4xl mx-auto"
+      >
+        {/* Header */}
+        <motion.div
+          variants={slideUp}
+          className="text-center mb-12"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <FileText className="text-primary-600 dark:text-primary-400" size={32} />
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white">
+              Resume
+            </h1>
+          </div>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Download my resume to learn more about my professional experience and qualifications
+          </p>
+        </motion.div>
 
-      {/* Resume Actions */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto flex gap-4 justify-center">
-          <motion.a
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            href="/resume/resume.pdf"
-            download="Omkar_Shinde_Resume.pdf"
-            className="inline-flex items-center space-x-2 px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
-          >
-            <Download size={20} />
-            <span>Download Resume</span>
-          </motion.a>
-          <motion.a
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            href="/resume/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-8 py-3 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          >
-            <Eye size={20} />
-            <span>View Online</span>
-          </motion.a>
-        </div>
-      </section>
-
-      {/* Resume Preview */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700"
-          >
-            <iframe
-              src="/resume.pdf"
-              title="Resume Preview"
-              className="w-full h-screen rounded-lg"
-            />
-          </motion.div>
-
-          {/* PDF not available message */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 p-6 bg-blue-50 dark:bg-blue-900 rounded-lg text-center"
-          >
-            <p className="text-blue-800 dark:text-blue-200">
-              📄 PDF preview will be displayed here once resume.pdf is added to the frontend/public/resume/ folder.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Resume Content Summary */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Resume Highlights
-          </h2>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          >
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-lg">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-3">
-                Experience
-              </h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>✓ 5+ years of development experience</li>
-                <li>✓ Full stack development expertise</li>
-                <li>✓ Remote and team collaboration</li>
-                <li>✓ Project leadership</li>
-              </ul>
+        {/* Resume Card */}
+        <motion.div
+          variants={itemVariants}
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+        >
+          <div className="p-8 sm:p-12">
+            {/* Personal Header */}
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                {portfolioData.name}
+              </h2>
+              <p className="text-lg text-primary-600 dark:text-primary-400 mb-4">
+                {portfolioData.title}
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                <span>{portfolioData.email}</span>
+                <span>•</span>
+                <span>{portfolioData.phone}</span>
+                <span>•</span>
+                <span>{portfolioData.location}</span>
+              </div>
             </div>
 
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-lg">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-3">
-                Technical Skills
-              </h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>✓ React, Node.js, MongoDB</li>
-                <li>✓ PostgreSQL, Docker</li>
-                <li>✓ AWS, Vercel, Netlify</li>
-                <li>✓ API Design & Development</li>
-              </ul>
-            </div>
+            <hr className="my-8 border-gray-200 dark:border-gray-700" />
 
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-lg">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-3">
-                Achievements
+            {/* Professional Summary */}
+            <section className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Professional Summary
               </h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>✓ 20+ successful projects</li>
-                <li>✓ Published research papers</li>
-                <li>✓ Open source contributions</li>
-                <li>✓ Technical mentorship</li>
-              </ul>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {portfolioData.about.summary}
+              </p>
+            </section>
+
+            {/* Skills Overview */}
+            <section className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Key Skills
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    Programming Languages
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {portfolioData.skills.languages.map(skill => (
+                      <span
+                        key={skill.name}
+                        className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    Frameworks & Technologies
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {portfolioData.skills.frameworks.slice(0, 6).map(skill => (
+                      <span
+                        key={skill.name}
+                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Education */}
+            {portfolioData.about.education.length > 0 && (
+              <section className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Education
+                </h3>
+                <div className="space-y-4">
+                  {portfolioData.about.education.map((edu, index) => (
+                    <div key={index} className="border-l-4 border-primary-500 pl-4">
+                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                        {edu.degree}
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {edu.school} • {edu.year}
+                      </p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {edu.details}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <hr className="my-8 border-gray-200 dark:border-gray-700" />
+
+            {/* Download Section */}
+            <div className="text-center">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                For a detailed view of all my experience and projects, please download my full resume.
+              </p>
+              <a
+                href={portfolioData.resume.pdfUrl}
+                download={portfolioData.resume.downloadName}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors"
+              >
+                <Download size={20} />
+                Download Resume
+              </a>
             </div>
-          </motion.div>
-        </div>
-      </section>
-    </main>
+          </div>
+        </motion.div>
+
+        {/* Additional Resources */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {[
+            { title: 'GitHub', desc: 'View my projects and code', icon: '💻' },
+            { title: 'LinkedIn', desc: 'Connect with me professionally', icon: '💼' },
+            { title: 'Contact', desc: 'Get in touch with me', icon: '📧' },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 text-center hover:shadow-lg transition-shadow"
+            >
+              <div className="text-4xl mb-3">{item.icon}</div>
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                {item.title}
+              </h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
