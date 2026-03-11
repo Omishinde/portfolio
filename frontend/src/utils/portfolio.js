@@ -171,8 +171,8 @@ export const portfolioData = {
   },
 
   social: {
-    github: "https://github.com/omishinde",
-    linkedin: "https://linkedin.com/in/omkar-shinde",
+    github: "https://github.com/Omishinde",
+    linkedin: "https://www.linkedin.com/in/omkar-shinde-64a387256/",
     twitter: "https://twitter.com/omishinde",
     email: "omishinde201@gmail.com"
   }
